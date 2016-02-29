@@ -22,8 +22,8 @@
     DCCustomInitialize *customInitialize = [[DCCustomInitialize alloc] initWithBlockInitialize:customBlock forClass:[Tweet class]];
     BOOL valid = [customInitialize isValidToPerformBlock:[Tweet class]];
     BOOL invalid = [customInitialize isValidToPerformBlock:[Person class]];
-    STAssertTrue(valid, @"should be valid to perform block on a tweet class");
-    STAssertFalse(invalid, @"shouldn't be valid to perform block on a person class");
+    XCTAssertTrue(valid, @"should be valid to perform block on a tweet class");
+    XCTAssertFalse(invalid, @"shouldn't be valid to perform block on a person class");
 }
 
 
@@ -55,7 +55,7 @@
     [parser parseDictionary:json];
     
     NSLog(@"%@", [parentTweet idStr]);
-    STAssertTrue([[parentTweet idStr] isEqualToString:@"190957570511478784"], @"idStr should be 190957570511478784");
+    XCTAssertTrue([[parentTweet idStr] isEqualToString:@"190957570511478784"], @"idStr should be 190957570511478784");
 }
 
 @end

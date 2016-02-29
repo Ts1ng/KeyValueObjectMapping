@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 dchohfi. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "NSObject+DCKeyValueObjectMapping.h"
 #import "DCArrayMapping.h"
 #import "DCCustomInitialize.h"
@@ -15,7 +15,7 @@
 #import "Tweet.h"
 #import "User.h"
 
-@interface NSObject_DCKeyValueObjectMappingTests : SenTestCase
+@interface NSObject_DCKeyValueObjectMappingTests : XCTestCase
 
 @property(nonatomic,strong) NSDictionary *plist;
 @property(nonatomic,strong) NSDictionary *json;
@@ -45,19 +45,19 @@
 - (void)testValidPlistToPerson
 {
     Person *person = [Person dc_parseDictionary:plist];
-    STAssertEqualObjects(person.name, @"Diego Chohfi Turini", @"Should be equals name");
-    STAssertEqualObjects(person.adress, @"Rua dos bobos, n 0", @"Should be equals adress");
-    STAssertEqualObjects(person.phone, @"+551199999999", @"Should be equals phone");
-    STAssertEquals(person.age, 24, nil, @"Should be equals age");
-    STAssertNotNil(person.parents, @"Should be able to parse NSArray");
-    STAssertTrue(person.valid, @"Person should be valid");
-    STAssertEqualObjects(person.url, [NSURL URLWithString:@"http://dchohfi.com/"], @"Should create equals urls");
-    STAssertEqualObjects(person.nota, [NSNumber numberWithInt:10], @"Should be equals");
-    STAssertEquals((int)[person.arrayPrimitive count], 4, @"Should have same size");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:0], @"hello", @"Should have hello on first position of array");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:1], @"mutchaco", @"Should have muthaco on first position of array");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:2], [NSNumber numberWithInt:1], @"Should have muthaco on first position of array");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:3], [NSNumber numberWithDouble:3.1416], @"Should have muthaco on first position of array");
+    XCTAssertEqualObjects(person.name, @"Diego Chohfi Turini", @"Should be equals name");
+    XCTAssertEqualObjects(person.adress, @"Rua dos bobos, n 0", @"Should be equals adress");
+    XCTAssertEqualObjects(person.phone, @"+551199999999", @"Should be equals phone");
+    XCTAssertEqual(person.age, 24, @"Should be equals age");
+    XCTAssertNotNil(person.parents, @"Should be able to parse NSArray");
+    XCTAssertTrue(person.valid, @"Person should be valid");
+    XCTAssertEqualObjects(person.url, [NSURL URLWithString:@"http://dchohfi.com/"], @"Should create equals urls");
+    XCTAssertEqualObjects(person.nota, [NSNumber numberWithInt:10], @"Should be equals");
+    XCTAssertEqual((int)[person.arrayPrimitive count], 4, @"Should have same size");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:0], @"hello", @"Should have hello on first position of array");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:1], @"mutchaco", @"Should have muthaco on first position of array");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:2], [NSNumber numberWithInt:1], @"Should have muthaco on first position of array");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:3], [NSNumber numberWithDouble:3.1416], @"Should have muthaco on first position of array");
 }
 
 - (void) testValidPlistToPersonWithConfiguration
@@ -66,21 +66,21 @@
     configuration.datePattern = @"yyyy-MM-dd'T'hh:mm:ssZ";
     
     Person *person = [Person dc_parseDictionary:plist configuration:configuration];
-    STAssertEqualObjects(person.name, @"Diego Chohfi Turini", @"Should be equals name");
-    STAssertEqualObjects(person.adress, @"Rua dos bobos, n 0", @"Should be equals adress");
-    STAssertEqualObjects(person.phone, @"+551199999999", @"Should be equals phone");
-    STAssertEquals(person.age, 24, nil, @"Should be equals age");
-    STAssertEqualObjects(person.birthDay, [NSDate dateWithTimeIntervalSince1970:565927200], nil, @"Should be equals NSDate");
-    STAssertNotNil(person.parents, @"Should be able to parse NSArray");
-    STAssertTrue(person.valid, @"Person should be valid");
-    STAssertEqualObjects(person.url, [NSURL URLWithString:@"http://dchohfi.com/"], @"Should create equals urls");
-    STAssertEqualObjects(person.nota, [NSNumber numberWithInt:10], @"Should be equals");
-    STAssertEqualObjects(person.dateWithString, [NSDate dateWithTimeIntervalSince1970:0], @"Should create equals NSDate");
-    STAssertEquals((int)[person.arrayPrimitive count], 4, @"Should have same size");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:0], @"hello", @"Should have hello on first position of array");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:1], @"mutchaco", @"Should have muthaco on first position of array");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:2], [NSNumber numberWithInt:1], @"Should have muthaco on first position of array");
-    STAssertEqualObjects([person.arrayPrimitive objectAtIndex:3], [NSNumber numberWithDouble:3.1416], @"Should have muthaco on first position of array");
+    XCTAssertEqualObjects(person.name, @"Diego Chohfi Turini", @"Should be equals name");
+    XCTAssertEqualObjects(person.adress, @"Rua dos bobos, n 0", @"Should be equals adress");
+    XCTAssertEqualObjects(person.phone, @"+551199999999", @"Should be equals phone");
+    XCTAssertEqual(person.age, 24, @"Should be equals age");
+    XCTAssertEqualObjects(person.birthDay, [NSDate dateWithTimeIntervalSince1970:565927200], @"Should be equals NSDate");
+    XCTAssertNotNil(person.parents, @"Should be able to parse NSArray");
+    XCTAssertTrue(person.valid, @"Person should be valid");
+    XCTAssertEqualObjects(person.url, [NSURL URLWithString:@"http://dchohfi.com/"], @"Should create equals urls");
+    XCTAssertEqualObjects(person.nota, [NSNumber numberWithInt:10], @"Should be equals");
+    XCTAssertEqualObjects(person.dateWithString, [NSDate dateWithTimeIntervalSince1970:0], @"Should create equals NSDate");
+    XCTAssertEqual((int)[person.arrayPrimitive count], 4, @"Should have same size");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:0], @"hello", @"Should have hello on first position of array");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:1], @"mutchaco", @"Should have muthaco on first position of array");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:2], [NSNumber numberWithInt:1], @"Should have muthaco on first position of array");
+    XCTAssertEqualObjects([person.arrayPrimitive objectAtIndex:3], [NSNumber numberWithDouble:3.1416], @"Should have muthaco on first position of array");
     
     configuration = nil;
 }
@@ -93,28 +93,28 @@
     NSDate *data = [formatter dateFromString:@"Sat Apr 14 00:20:07 +0000 2012"];
     
     Tweet *tweet = [Tweet dc_parseDictionary:json configuration:config];
-    STAssertEqualObjects(tweet.idStr, @"190957570511478784", @"Should have same idStr");
-    STAssertEqualObjects(tweet.text, @"@pedroh96 cara, comecei uma lib pra iOS, se puder dar uma olhada e/ou contribuir :D KeyValue Parse for Objective-C https://t.co/NWMMc60v", @"Should have same text");
-    STAssertEqualObjects(tweet.source, @"<a href=\"http://www.osfoora.com/mac\" rel=\"nofollow\">Osfoora for Mac</a>", @"Should have same source");
-    STAssertNil(tweet.inReplyToStatusIdStr, @"inRepryToStatusIdStr should be null");
-    STAssertTrue([tweet.retweetCount isEqualToNumber:@(0)], @"RetweetCount should be equals to 0");
-    STAssertFalse(tweet.favorited, @"favorited should be false");
-    STAssertFalse(tweet.retweeted, @"favorited should be false");
-    STAssertEqualObjects(tweet.createdAt, data, @"CreatedAt should be equals");
+    XCTAssertEqualObjects(tweet.idStr, @"190957570511478784", @"Should have same idStr");
+    XCTAssertEqualObjects(tweet.text, @"@pedroh96 cara, comecei uma lib pra iOS, se puder dar uma olhada e/ou contribuir :D KeyValue Parse for Objective-C https://t.co/NWMMc60v", @"Should have same text");
+    XCTAssertEqualObjects(tweet.source, @"<a href=\"http://www.osfoora.com/mac\" rel=\"nofollow\">Osfoora for Mac</a>", @"Should have same source");
+    XCTAssertNil(tweet.inReplyToStatusIdStr, @"inRepryToStatusIdStr should be null");
+    XCTAssertTrue([tweet.retweetCount isEqualToNumber:@(0)], @"RetweetCount should be equals to 0");
+    XCTAssertFalse(tweet.favorited, @"favorited should be false");
+    XCTAssertFalse(tweet.retweeted, @"favorited should be false");
+    XCTAssertEqualObjects(tweet.createdAt, data, @"CreatedAt should be equals");
     
     data = [formatter dateFromString:@"Tue Mar 31 18:01:12 +0000 2009"];
     
     User *user = tweet.user;
-    STAssertEqualObjects(user.idStr, @"27924446", @"Should have same idStr for user");
-    STAssertEqualObjects(user.name, @"Diego Chohfi", @"Should have same user name");
-    STAssertEqualObjects(user.screenName, @"dchohfi", @"Should have same user screenName");
-    STAssertEqualObjects(user.location, @"São Paulo", @"Should have same user location");
-    STAssertEqualObjects(user.description, @"Instrutor na @Caelum, desenvolvedor de coração, apaixonado por música e cerveja, sempre cerveja.", @"Should have same user description");
-    STAssertEqualObjects(user.url, [NSURL URLWithString:@"http://about.me/dchohfi"], @"Should have same user url");
-    STAssertFalse(user.protected, @"User should be protected");
-    STAssertEquals(user.followersCount, (long)380, @"Should have 380 followersCount");
-    STAssertEquals(user.friendsCount, (long)183, @"Should have 183 friendsCount");
-    STAssertEqualObjects(user.createdAt, data, @"Should have same createdAt date");
+    XCTAssertEqualObjects(user.idStr, @"27924446", @"Should have same idStr for user");
+    XCTAssertEqualObjects(user.name, @"Diego Chohfi", @"Should have same user name");
+    XCTAssertEqualObjects(user.screenName, @"dchohfi", @"Should have same user screenName");
+    XCTAssertEqualObjects(user.location, @"São Paulo", @"Should have same user location");
+    XCTAssertEqualObjects(user.description, @"Instrutor na @Caelum, desenvolvedor de coração, apaixonado por música e cerveja, sempre cerveja.", @"Should have same user description");
+    XCTAssertEqualObjects(user.url, [NSURL URLWithString:@"http://about.me/dchohfi"], @"Should have same user url");
+    XCTAssertFalse(user.protected, @"User should be protected");
+    XCTAssertEqual(user.followersCount, (long)380, @"Should have 380 followersCount");
+    XCTAssertEqual(user.friendsCount, (long)183, @"Should have 183 friendsCount");
+    XCTAssertEqualObjects(user.createdAt, data, @"Should have same createdAt date");
 }
 
 - (void) testValidJsonToArrayOfTweets{
@@ -125,12 +125,12 @@
     configuration.datePattern = @"eee MMM dd HH:mm:ss ZZZZ yyyy";
     NSArray *parsedArray = [Tweet dc_parseArray:arrayTweets configuration:configuration];
     
-    STAssertEquals((int)[parsedArray count], 3, @"Should have same size of tweets");
-    STAssertTrue([parsedArray isKindOfClass:[NSArray class]], @"Should be a NSArray");
-    STAssertFalse([parsedArray isKindOfClass:[NSMutableArray class]], @"Should not be a NSMutableArray");
+    XCTAssertEqual((int)[parsedArray count], 3, @"Should have same size of tweets");
+    XCTAssertTrue([parsedArray isKindOfClass:[NSArray class]], @"Should be a NSArray");
+    XCTAssertFalse([parsedArray isKindOfClass:[NSMutableArray class]], @"Should not be a NSMutableArray");
     
     [parsedArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        STAssertEquals(tweetClass, [obj class], @"Should be a Tweet");
+        XCTAssertEqual(tweetClass, [obj class], @"Should be a Tweet");
     }];
 }
 
@@ -150,12 +150,12 @@
                                                                  onClass:[User class]]];
     
     User *user = [User dc_parseDictionary:userDictionary configuration:configuration];
-    STAssertEquals((int)[user.tweets count], 2, @"Should have same Tweets array size");
+    XCTAssertEqual((int)[user.tweets count], 2, @"Should have same Tweets array size");
     
     [user.tweets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        STAssertEquals(tweetClass, [obj class], @"Should be a Tweet");
+        XCTAssertEqual(tweetClass, [obj class], @"Should be a Tweet");
         Tweet *tweet = (Tweet *) obj;
-        STAssertNotNil(tweet.user, @"Should contain user on Tweet");
+        XCTAssertNotNil(tweet.user, @"Should contain user on Tweet");
     }];
 }
 
@@ -171,24 +171,24 @@
     [configuration addObjectMapping:mapping];
     
     User *user = [User dc_parseDictionary:userDictionary configuration:configuration];
-    STAssertEqualObjects(name, user.name, @"Should be able to use value on borba key and set it to user name property");
+    XCTAssertEqualObjects(name, user.name, @"Should be able to use value on borba key and set it to user name property");
     
 }
 
 - (void) testNullValuesPassed
 {
     Person *person = [Person dc_parseDictionary:nil];
-    STAssertNil(person, @"Should be nill when dictionary is nil");
+    XCTAssertNil(person, @"Should be nill when dictionary is nil");
     
     NSArray *persons = [Person dc_parseArray:nil];
-    STAssertNil(persons, @"Should be nill when array is nil");
+    XCTAssertNil(persons, @"Should be nill when array is nil");
 }
 
 -(void) testShouldUseCustomInitializeForPropertyClasses {
     NSString *customText = @"custom text to be on attribute";
     DCCustomInitializeBlock block = ^id(__weak Class classToGenerate, __weak NSDictionary *values, id parentObject){
-        STAssertEquals(classToGenerate, [User class], @"classToGenerate should be a user");
-        STAssertEqualObjects([values objectForKey:@"name"], @"Diego Chohfi", @"Should have same user name");
+        XCTAssertEqual(classToGenerate, [User class], @"classToGenerate should be a user");
+        XCTAssertEqualObjects([values objectForKey:@"name"], @"Diego Chohfi", @"Should have same user name");
         User *user = [[classToGenerate alloc] init];
         user.customText = customText;
         return user;
@@ -200,16 +200,16 @@
     
     Tweet *tweet = [Tweet dc_parseDictionary:json configuration:config];
     User *user = tweet.user;
-    STAssertEqualObjects(customText, user.customText, @"should be equals to customText");
+    XCTAssertEqualObjects(customText, user.customText, @"should be equals to customText");
 }
 
 - (void) testShouldUseBlocksToParseValues {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     DCCustomParserBlock parserBlock = ^id(NSDictionary *dictionary, NSString *__weak attributeName, __weak Class destinationClass, __weak id value) {
-        STAssertTrue([@"08/12/1987" isEqualToString:value], @"The value inside the block should be equals to the value on the source");
-        STAssertTrue([@"data" isEqualToString:attributeName], @"The attribute should be the same that is mapped for");
-        STAssertEquals(destinationClass, [Tweet class], @"The destionation class should be the same that is mapped for");
+        XCTAssertTrue([@"08/12/1987" isEqualToString:value], @"The value inside the block should be equals to the value on the source");
+        XCTAssertTrue([@"data" isEqualToString:attributeName], @"The attribute should be the same that is mapped for");
+        XCTAssertEqual(destinationClass, [Tweet class], @"The destionation class should be the same that is mapped for");
         return [dateFormatter dateFromString:value];
     };
     DCCustomParser *customParser = [[DCCustomParser alloc] initWithBlockParser:parserBlock
@@ -220,7 +220,7 @@
     [config addCustomParsersObject:customParser];
     
     Tweet *tweet = [Tweet dc_parseDictionary:json configuration:config];
-    STAssertTrue([tweet.data isEqualToDate:[dateFormatter dateFromString:@"08/12/1987"]], nil);
+    XCTAssertTrue([tweet.data isEqualToDate:[dateFormatter dateFromString:@"08/12/1987"]], @"test");
 }
 
 -(void) testCustomMap {
@@ -244,8 +244,8 @@
     [configuration addArrayMapper:arrayMapper];
     
     User *user = [User dc_parseDictionary:userValues configuration:configuration];
-    STAssertEqualObjects(@"Diego", [user name], @"");
-    STAssertEquals(2, (int)[user.tweets count], @"Should have two tweet");
+    XCTAssertEqualObjects(@"Diego", [user name], @"");
+    XCTAssertEqual(2, (int)[user.tweets count], @"Should have two tweet");
 }
 
 - (void)testNestedProperties{
@@ -256,8 +256,8 @@
     [configuration addObjectMapping:nestedMapping];
     
     Tweet *tweet = [Tweet dc_parseDictionary:source configuration:configuration];
-    STAssertEqualObjects(tweet.idStr, @"12345", @"wrong id string");
-    STAssertEqualObjects(tweet.text, @"Some text", @"wrong text string");
+    XCTAssertEqualObjects(tweet.idStr, @"12345", @"wrong id string");
+    XCTAssertEqualObjects(tweet.text, @"Some text", @"wrong text string");
 }
 
 - (void)testDeeplyNestedProperties{
@@ -268,8 +268,8 @@
     [configuration addObjectMapping:nestedMapping];
     
     Tweet *tweet = [Tweet dc_parseDictionary:source configuration:configuration];
-    STAssertEqualObjects(tweet.idStr, @"12345", @"wrong id string");
-    STAssertEqualObjects(tweet.text, @"Some text", @"wrong text string");
+    XCTAssertEqualObjects(tweet.idStr, @"12345", @"wrong id string");
+    XCTAssertEqualObjects(tweet.text, @"Some text", @"wrong text string");
 }
 
 - (void)testObjectUpdateWithDictionary{
@@ -280,8 +280,8 @@
     
     [tweet dc_updateWithDictionary:newSource];
     
-    STAssertEqualObjects(tweet.idStr, @"67890", @"wrong id string");
-    STAssertEqualObjects(tweet.text, @"New Text", @"wrong text string");
+    XCTAssertEqualObjects(tweet.idStr, @"67890", @"wrong id string");
+    XCTAssertEqualObjects(tweet.text, @"New Text", @"wrong text string");
 }
 
 - (void)textObjectUpdateWithNestedDictionary{
@@ -298,8 +298,8 @@
     
     [tweet dc_updateWithDictionary:newSource configuration:configuration];
     
-    STAssertEqualObjects(tweet.idStr, @"67890", @"wrong id string");
-    STAssertEqualObjects(tweet.text, @"New Text", @"wrong text string");
+    XCTAssertEqualObjects(tweet.idStr, @"67890", @"wrong id string");
+    XCTAssertEqualObjects(tweet.text, @"New Text", @"wrong text string");
 }
 
 @end

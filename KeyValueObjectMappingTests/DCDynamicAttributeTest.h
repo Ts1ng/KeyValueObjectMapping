@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 None. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface DCDynamicAttributeTest : SenTestCase
+@interface DCDynamicAttributeTest : XCTestCase
 @end

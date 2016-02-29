@@ -25,21 +25,21 @@
 
 - (void) testFindPropertyNameOnUser {
     DCDynamicAttribute *dynamicProperty = [finder findAttributeForKey:@"name" onClass:[User class]];
-    STAssertNotNil(dynamicProperty, @"Should be able to find name property on User class");
-    STAssertEqualObjects(@"name", dynamicProperty.objectMapping.attributeName, @"Attribute name should be equals to name");
-    STAssertEqualObjects(@"name", dynamicProperty.objectMapping.keyReference, @"Keyreference should be equals to name");
+    XCTAssertNotNil(dynamicProperty, @"Should be able to find name property on User class");
+    XCTAssertEqualObjects(@"name", dynamicProperty.objectMapping.attributeName, @"Attribute name should be equals to name");
+    XCTAssertEqualObjects(@"name", dynamicProperty.objectMapping.keyReference, @"Keyreference should be equals to name");
 }
 
 - (void) testFindPropertyIdStrOnUser {
     DCDynamicAttribute *dynamicProperty = [finder findAttributeForKey:@"id_str" onClass:[User class]];
-    STAssertNotNil(dynamicProperty, @"Should be able to find idStr property on User class");
-    STAssertEqualObjects(@"idStr", dynamicProperty.objectMapping.attributeName, @"Attribute should be equals to idStr");
-    STAssertEqualObjects(@"id_str", dynamicProperty.objectMapping.keyReference, @"Keyreference should be equals to id_str");
+    XCTAssertNotNil(dynamicProperty, @"Should be able to find idStr property on User class");
+    XCTAssertEqualObjects(@"idStr", dynamicProperty.objectMapping.attributeName, @"Attribute should be equals to idStr");
+    XCTAssertEqualObjects(@"id_str", dynamicProperty.objectMapping.keyReference, @"Keyreference should be equals to id_str");
 }
 
 - (void) testUnknowAttributeNameForKey {
     DCDynamicAttribute *dynamicProperty = [finder findAttributeForKey:@"borba" onClass:[User class]];
-    STAssertNil(dynamicProperty, @"Should be nill when a unknow key is passed");
+    XCTAssertNil(dynamicProperty, @"Should be nill when a unknow key is passed");
 }
 
 - (void) testOverrideAttributeFinderForNameOnUser {
@@ -47,8 +47,8 @@
     [finder setMappers:[NSArray arrayWithObject:mapping]];
  
     DCDynamicAttribute *dynamicProperty = [finder findAttributeForKey:@"borba" onClass:[User class]];
-    STAssertNotNil(dynamicProperty, @"Should be able to find name property on User class");
-    STAssertEqualObjects(@"name", dynamicProperty.objectMapping.attributeName, @"Attribute name should be equals to name");
-    STAssertEqualObjects(@"borba", dynamicProperty.objectMapping.keyReference, @"Keyreference should be equals to borba");
+    XCTAssertNotNil(dynamicProperty, @"Should be able to find name property on User class");
+    XCTAssertEqualObjects(@"name", dynamicProperty.objectMapping.attributeName, @"Attribute name should be equals to name");
+    XCTAssertEqualObjects(@"borba", dynamicProperty.objectMapping.keyReference, @"Keyreference should be equals to borba");
 }
 @end

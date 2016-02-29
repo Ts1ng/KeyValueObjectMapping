@@ -49,8 +49,8 @@
     DCKeyValueObjectMapping *parser = [DCKeyValueObjectMapping mapperForClass:[User class] 
                                                              andConfiguration:configuration];
     User *user = [parser parseDictionary:jsonParsed];
-    STAssertNotNil(user.tweets, @"Tweets should not be nil");
-    STAssertEquals((int)user.tweets.count, 2, @"Should have 2 tweets on array of tweets");
+    XCTAssertNotNil(user.tweets, @"Tweets should not be nil");
+    XCTAssertEqual((int)user.tweets.count, 2, @"Should have 2 tweets on array of tweets");
 }
 
 - (void) testShouldCreateUserWithNilOnTweetsArray{
@@ -71,7 +71,7 @@
                                                              andConfiguration:configuration];
 
     User *user = [parser parseDictionary:copy];
-    STAssertEqualObjects(user.tweets, nil, @"Tweets should be nil", nil);
+    XCTAssertEqualObjects(user.tweets, nil, @"Tweets should be nil", nil);
 }
 
 - (void) testShouldCreateUserWithEmptyTweetsOnArray{
@@ -93,8 +93,8 @@
     
     User *user = [parser parseDictionary:copy];
     NSArray *tweets = user.tweets;
-    STAssertNotNil(tweets, @"Tweets should be nil");
-    STAssertEquals((int)[tweets count], (int)0, @"Tweets length should be 0");
+    XCTAssertNotNil(tweets, @"Tweets should be nil");
+    XCTAssertEqual((int)[tweets count], (int)0, @"Tweets length should be 0");
 }
 
 @end

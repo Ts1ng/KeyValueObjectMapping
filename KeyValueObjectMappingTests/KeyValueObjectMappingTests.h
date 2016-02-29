@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 None. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface KeyValueObjectMappingTests : SenTestCase
+
+@interface KeyValueObjectMappingTests : XCTestCase
+
 
 @end

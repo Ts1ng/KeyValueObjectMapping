@@ -33,10 +33,10 @@
     DCKeyValueObjectMapping *parser = [DCKeyValueObjectMapping mapperForClass:[Bus class]
                                                              andConfiguration:configuration];
     Bus *bus = [parser parseDictionary:dictionaryToParse];
-    STAssertNotNil(bus.location, @"Should be able to create a location using aggregator");
-    STAssertEqualObjects(bus.name, busName, @"Should be equals");
-    STAssertEqualObjects(bus.location.latitude, latitude, @"Should be equals");
-    STAssertEqualObjects(bus.location.longitude, longitude, @"Should be equals");
+    XCTAssertNotNil(bus.location, @"Should be able to create a location using aggregator");
+    XCTAssertEqualObjects(bus.name, busName, @"Should be equals");
+    XCTAssertEqualObjects(bus.location.latitude, latitude, @"Should be equals");
+    XCTAssertEqualObjects(bus.location.longitude, longitude, @"Should be equals");
 }
 
 - (void) testAggregateMultipleRules {
@@ -58,11 +58,11 @@
     [configuration addAggregator:aggregteLatLong];
     [configuration addAggregator:aggregatePointDist];
     NSDictionary *aggregatedDict = [DCDictionaryRearranger rearrangeDictionary:dictionaryToParse forConfiguration:configuration];
-    STAssertNotNil(aggregatedDict, @"Should be able to create a location using aggregator");
-    STAssertEqualObjects([aggregatedDict objectForKey:@"name"], busName, @"Should be equals");
-    STAssertEqualObjects([[aggregatedDict objectForKey:@"location"] objectForKey:@"distance"], distance, @"Should be equals");
-    STAssertEqualObjects([[[aggregatedDict objectForKey:@"location"] objectForKey:@"point"] objectForKey:@"latitude"], latitude, @"Should be equals");
-    STAssertEqualObjects([[[aggregatedDict objectForKey:@"location"] objectForKey:@"point"] objectForKey:@"longitude"], longitude, @"Should be equals");
+    XCTAssertNotNil(aggregatedDict, @"Should be able to create a location using aggregator");
+    XCTAssertEqualObjects([aggregatedDict objectForKey:@"name"], busName, @"Should be equals");
+    XCTAssertEqualObjects([[aggregatedDict objectForKey:@"location"] objectForKey:@"distance"], distance, @"Should be equals");
+    XCTAssertEqualObjects([[[aggregatedDict objectForKey:@"location"] objectForKey:@"point"] objectForKey:@"latitude"], latitude, @"Should be equals");
+    XCTAssertEqualObjects([[[aggregatedDict objectForKey:@"location"] objectForKey:@"point"] objectForKey:@"longitude"], longitude, @"Should be equals");
 }
 
 

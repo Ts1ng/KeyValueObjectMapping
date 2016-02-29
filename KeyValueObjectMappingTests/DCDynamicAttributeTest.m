@@ -15,56 +15,56 @@
     DCDynamicAttribute *attribute = [[DCDynamicAttribute alloc] initWithAttributeDescription:@"Ti,R,N,Vage"
                                                                                       forKey:@"age"
                                                                                      onClass:[Tweet class]];
-    STAssertEquals(attribute.classe, [Tweet class], @"Should be the same class");
-    STAssertTrue([attribute isPrimitive], @"Should be a primitive attribute");
-    STAssertFalse([attribute isIdType], @"Should not be and id type");
-    STAssertFalse([attribute isValidObject], @"Should not be a valid object");
-    STAssertNil(attribute.objectMapping.classReference, @"Should be nil when attribute is primitive");
-    STAssertEqualObjects(attribute.typeName, @"i", @"Should be an integer attribute");
-    STAssertEqualObjects(attribute.objectMapping.attributeName, @"age", @"AttributeName should be age");
+    XCTAssertEqual(attribute.classe, [Tweet class], @"Should be the same class");
+    XCTAssertTrue([attribute isPrimitive], @"Should be a primitive attribute");
+    XCTAssertFalse([attribute isIdType], @"Should not be and id type");
+    XCTAssertFalse([attribute isValidObject], @"Should not be a valid object");
+    XCTAssertNil(attribute.objectMapping.classReference, @"Should be nil when attribute is primitive");
+    XCTAssertEqualObjects(attribute.typeName, @"i", @"Should be an integer attribute");
+    XCTAssertEqualObjects(attribute.objectMapping.attributeName, @"age", @"AttributeName should be age");
 }
 
 - (void) testDynamicAttributeForNSStringType {
     DCDynamicAttribute *attribute = [[DCDynamicAttribute alloc] initWithAttributeDescription:@"T@\"NSString\",&,N,Vadress" forKey:@"adress" onClass:[Tweet class]];
-    STAssertEquals(attribute.classe, [Tweet class], @"Should be the same class");
-    STAssertFalse([attribute isPrimitive], @"Should be a class");
-    STAssertFalse([attribute isIdType], @"Should not be and id type");
-    STAssertTrue([attribute isValidObject], @"Should not be a valid object");
-    STAssertEquals(attribute.objectMapping.classReference, [NSString class], @"Should be NSString class");
-    STAssertEqualObjects(attribute.typeName, @"NSString", @"Should be a NSString attribute");
-    STAssertEqualObjects(attribute.objectMapping.attributeName, @"adress", @"AttributeName should be adress");
+    XCTAssertEqual(attribute.classe, [Tweet class], @"Should be the same class");
+    XCTAssertFalse([attribute isPrimitive], @"Should be a class");
+    XCTAssertFalse([attribute isIdType], @"Should not be and id type");
+    XCTAssertTrue([attribute isValidObject], @"Should not be a valid object");
+    XCTAssertEqual(attribute.objectMapping.classReference, [NSString class], @"Should be NSString class");
+    XCTAssertEqualObjects(attribute.typeName, @"NSString", @"Should be a NSString attribute");
+    XCTAssertEqualObjects(attribute.objectMapping.attributeName, @"adress", @"AttributeName should be adress");
 }
 
 - (void) testDynamicAttributeForNSDateType {
     DCDynamicAttribute *attribute = [[DCDynamicAttribute alloc] initWithAttributeDescription:@"T@\"NSDate\",&,N,VdataNascimento" forKey:@"dataNascimento" onClass:[Tweet class]];
-    STAssertEquals(attribute.classe, [Tweet class], @"Should be the same class");
-    STAssertFalse([attribute isPrimitive], @"Should be a class");
-    STAssertFalse([attribute isIdType], @"Should not be and id type");
-    STAssertTrue([attribute isValidObject], @"Should not be a valid object");
-    STAssertEquals(attribute.objectMapping.classReference, [NSDate class], @"Should be NSDate class");
-    STAssertEqualObjects(attribute.typeName, @"NSDate", @"Should be a NSDate attribute");
-    STAssertEqualObjects(attribute.objectMapping.attributeName, @"dataNascimento", @"AttributeName should be dataNascimento");
+    XCTAssertEqual(attribute.classe, [Tweet class], @"Should be the same class");
+    XCTAssertFalse([attribute isPrimitive], @"Should be a class");
+    XCTAssertFalse([attribute isIdType], @"Should not be and id type");
+    XCTAssertTrue([attribute isValidObject], @"Should not be a valid object");
+    XCTAssertEqual(attribute.objectMapping.classReference, [NSDate class], @"Should be NSDate class");
+    XCTAssertEqualObjects(attribute.typeName, @"NSDate", @"Should be a NSDate attribute");
+    XCTAssertEqualObjects(attribute.objectMapping.attributeName, @"dataNascimento", @"AttributeName should be dataNascimento");
 }
 
 - (void) testDynamicAttributeForIdType {
     DCDynamicAttribute *attribute = [[DCDynamicAttribute alloc] initWithAttributeDescription:@"T@,&,N,Vid" forKey:@"id" onClass:[Tweet class]];
-    STAssertEquals(attribute.classe, [Tweet class], @"Should be the same class");
-    STAssertFalse([attribute isPrimitive], @"Should be a class");
-    STAssertFalse([attribute isValidObject], @"Should not be a valid object");
-    STAssertTrue([attribute isIdType], @"Should be and id type");
-    STAssertNil(attribute.objectMapping.classReference, @"Should be nil when attribute is id");
-    STAssertNil(attribute.typeName, @"Should be null when attribut is id");
-    STAssertEqualObjects(attribute.objectMapping.attributeName, @"id", @"AttributeName should be id");
+    XCTAssertEqual(attribute.classe, [Tweet class], @"Should be the same class");
+    XCTAssertFalse([attribute isPrimitive], @"Should be a class");
+    XCTAssertFalse([attribute isValidObject], @"Should not be a valid object");
+    XCTAssertTrue([attribute isIdType], @"Should be and id type");
+    XCTAssertNil(attribute.objectMapping.classReference, @"Should be nil when attribute is id");
+    XCTAssertNil(attribute.typeName, @"Should be null when attribut is id");
+    XCTAssertEqualObjects(attribute.objectMapping.attributeName, @"id", @"AttributeName should be id");
 }
 
 - (void) testDynamicNotSynthetizedAttribute {
     DCDynamicAttribute *attribute = [[DCDynamicAttribute alloc] initWithAttributeDescription:@"T@\"NSString\",&,D,N" forKey:@"adress" onClass:[Tweet class] attributeName:@"adress"];
-    STAssertEquals(attribute.classe, [Tweet class], @"Should be the same class");
-    STAssertFalse([attribute isPrimitive], @"Should be a class");
-    STAssertFalse([attribute isIdType], @"Should not be and id type");
-    STAssertTrue([attribute isValidObject], @"Should not be a valid object");
-    STAssertEquals(attribute.objectMapping.classReference, [NSString class], @"Should be NSString class");
-    STAssertEqualObjects(attribute.typeName, @"NSString", @"Should be a NSString attribute");
-    STAssertEqualObjects(attribute.objectMapping.attributeName, @"adress", @"AttributeName should be adress");
+    XCTAssertEqual(attribute.classe, [Tweet class], @"Should be the same class");
+    XCTAssertFalse([attribute isPrimitive], @"Should be a class");
+    XCTAssertFalse([attribute isIdType], @"Should not be and id type");
+    XCTAssertTrue([attribute isValidObject], @"Should not be a valid object");
+    XCTAssertEqual(attribute.objectMapping.classReference, [NSString class], @"Should be NSString class");
+    XCTAssertEqualObjects(attribute.typeName, @"NSString", @"Should be a NSString attribute");
+    XCTAssertEqualObjects(attribute.objectMapping.attributeName, @"adress", @"AttributeName should be adress");
 }
 @end

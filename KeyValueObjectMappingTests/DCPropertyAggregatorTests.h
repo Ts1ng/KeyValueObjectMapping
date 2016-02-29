@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 dchohfi. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface DCPropertyAggregatorTests : SenTestCase
+
+@interface DCPropertyAggregatorTests : XCTestCase
+
 
 @end

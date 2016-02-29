@@ -38,8 +38,8 @@
     Bus *bus = [[Bus alloc] initWithName:@"Vila carrão" andLocation:localizacao];
     
     NSDictionary *busParsed = [parser serializeObject:bus];
-    STAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], nil);
-    STAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], nil);
+    XCTAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], @"test");
+    XCTAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], @"test");
 }
 
 - (void)testSimpleFieldSerializationUsingAddMapper {
@@ -54,16 +54,16 @@
     Bus *bus = [[Bus alloc] initWithName:@"Vila carrão" andLocation:localizacao];
     
     NSDictionary *busParsed = [localParser serializeObject:bus];
-    STAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], nil);
-    STAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], nil);
+    XCTAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], @"test");
+    XCTAssertTrue([[busParsed objectForKey:@"name"] isEqualToString:@"Vila carrão"], @"test");
 }
 
 - (void)testInvalidAddMapperSerialization {
     DCParserConfiguration *configuration = [DCParserConfiguration configuration];
     DCObjectMapping *nameMapper = [DCObjectMapping mapKeyPath:@"name" toAttribute:@"name" onClass:[Bus class]];
     
-    STAssertNoThrow([configuration addMapper:nameMapper], @"correct use of AddMapper should not throw exception");
-    STAssertThrowsSpecificNamed([configuration addMapper:[NSObject new]],
+    XCTAssertNoThrow([configuration addMapper:nameMapper], @"correct use of AddMapper should not throw exception");
+    XCTAssertThrowsSpecificNamed([configuration addMapper:[NSObject new]],
                                 NSException,
                                 NSInternalInconsistencyException,
                                 @"incorrect use of AddMapper: should throw NSInternalInconsistencyException");

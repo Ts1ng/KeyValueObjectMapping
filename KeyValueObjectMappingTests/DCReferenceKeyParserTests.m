@@ -26,21 +26,21 @@
     NSString *word = @"id";
     NSString *splitedWord = [parser splitKeyAndMakeCamelcased:word];
 
-    STAssertEqualObjects(word, splitedWord, @"Should not change the attribute name when it's a single word");
+    XCTAssertEqualObjects(word, splitedWord, @"Should not change the attribute name when it's a single word");
 }
 
 - (void) testPropertyNameParserForTwoWords {
     NSString *word = @"id_str";
     NSString *splitedWord = [parser splitKeyAndMakeCamelcased:word];
     
-    STAssertEqualObjects(@"idStr", splitedWord, @"Should remove tokens and camelcase the expression");
+    XCTAssertEqualObjects(@"idStr", splitedWord, @"Should remove tokens and camelcase the expression");
 }
 
 - (void) testPropertyNameParserForThreeWords {
     NSString *word = @"created_time_at";
     NSString *splitedWord = [parser splitKeyAndMakeCamelcased:word];
     
-    STAssertEqualObjects(@"createdTimeAt", splitedWord, @"Should remove tokens and camelcase the expression");
+    XCTAssertEqualObjects(@"createdTimeAt", splitedWord, @"Should remove tokens and camelcase the expression");
 }
 
 - (void) testPropertyNameParserForNilOrEmptyWord {
@@ -49,8 +49,8 @@
     NSString *nilWordSplited = [parser splitKeyAndMakeCamelcased:nilWord];
     NSString *emptyWordSplited = [parser splitKeyAndMakeCamelcased:emptyWord];
     
-    STAssertEqualObjects(@"", nilWordSplited, @"Should be empty NSString when the property name passed is nil");
-    STAssertEqualObjects(@"", emptyWordSplited, @"Should be empty NSString when the property name passed is an empty NSString");
+    XCTAssertEqualObjects(@"", nilWordSplited, @"Should be empty NSString when the property name passed is nil");
+    XCTAssertEqualObjects(@"", emptyWordSplited, @"Should be empty NSString when the property name passed is an empty NSString");
 }
 
 - (void) testWithEmptyToken {
@@ -60,7 +60,7 @@
     */
     parser = [DCReferenceKeyParser parserForToken:nil];
     NSString *NotExistingProperty = @"id";
-    STAssertNoThrow([parser splitKeyAndMakeCamelcased:NotExistingProperty], @"shouldn't throw an exception");
+    XCTAssertNoThrow([parser splitKeyAndMakeCamelcased:NotExistingProperty], @"shouldn't throw an exception");
 }
 
 @end

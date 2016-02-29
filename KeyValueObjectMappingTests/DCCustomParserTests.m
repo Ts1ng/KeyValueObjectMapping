@@ -22,8 +22,8 @@
                                     
     BOOL valid = [customParser isValidToPerformBlockOnAttributeName:@"user_name" forClass:[User class]];
     BOOL invalid = [customParser isValidToPerformBlockOnAttributeName:@"user_name" forClass:[Tweet class]];
-    STAssertTrue(valid, @"should be valid to perform block on a tweet class");
-    STAssertFalse(invalid, @"shouldn't be valid to perform block on a person class");
+    XCTAssertTrue(valid, @"should be valid to perform block on a tweet class");
+    XCTAssertFalse(invalid, @"shouldn't be valid to perform block on a person class");
 }
 
 
